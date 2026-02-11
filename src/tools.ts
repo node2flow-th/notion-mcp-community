@@ -10,6 +10,12 @@ export const TOOLS: MCPToolDefinition[] = [
   {
     name: 'notion_search',
     description: 'Search pages and databases in your Notion workspace by title. Filter by object type and sort by last edited time.',
+    annotations: {
+      title: 'Search Notion',
+      readOnlyHint: true,
+      destructiveHint: false,
+      openWorldHint: true,
+    },
     inputSchema: {
       type: 'object',
       properties: {
@@ -26,6 +32,12 @@ export const TOOLS: MCPToolDefinition[] = [
   {
     name: 'notion_create_page',
     description: 'Create a new page in Notion. Set parent as a data source (data_source_id) or another page (page_id). Provide properties matching the parent schema. Optionally include initial content blocks.',
+    annotations: {
+      title: 'Create Page',
+      readOnlyHint: false,
+      destructiveHint: false,
+      openWorldHint: false,
+    },
     inputSchema: {
       type: 'object',
       properties: {
@@ -41,6 +53,12 @@ export const TOOLS: MCPToolDefinition[] = [
   {
     name: 'notion_get_page',
     description: 'Retrieve a Notion page by ID. Returns properties, parent, timestamps, and URL. Use notion_get_block_children to read the page content.',
+    annotations: {
+      title: 'Get Page',
+      readOnlyHint: true,
+      destructiveHint: false,
+      openWorldHint: true,
+    },
     inputSchema: {
       type: 'object',
       properties: {
@@ -52,6 +70,13 @@ export const TOOLS: MCPToolDefinition[] = [
   {
     name: 'notion_update_page',
     description: 'Update a Notion page. Change properties, icon, cover, or archive/trash status. Use block tools to update page content.',
+    annotations: {
+      title: 'Update Page',
+      readOnlyHint: false,
+      destructiveHint: false,
+      idempotentHint: true,
+      openWorldHint: false,
+    },
     inputSchema: {
       type: 'object',
       properties: {
@@ -68,6 +93,13 @@ export const TOOLS: MCPToolDefinition[] = [
   {
     name: 'notion_move_page',
     description: 'Move a page to a new parent page or data source.',
+    annotations: {
+      title: 'Move Page',
+      readOnlyHint: false,
+      destructiveHint: false,
+      idempotentHint: true,
+      openWorldHint: false,
+    },
     inputSchema: {
       type: 'object',
       properties: {
@@ -80,6 +112,12 @@ export const TOOLS: MCPToolDefinition[] = [
   {
     name: 'notion_get_page_property',
     description: 'Retrieve a specific property value from a page. Useful for paginated properties like relations or rollups.',
+    annotations: {
+      title: 'Get Page Property',
+      readOnlyHint: true,
+      destructiveHint: false,
+      openWorldHint: true,
+    },
     inputSchema: {
       type: 'object',
       properties: {
@@ -96,6 +134,12 @@ export const TOOLS: MCPToolDefinition[] = [
   {
     name: 'notion_get_block',
     description: 'Retrieve a single block by ID. Returns block type, content, and whether it has children.',
+    annotations: {
+      title: 'Get Block',
+      readOnlyHint: true,
+      destructiveHint: false,
+      openWorldHint: true,
+    },
     inputSchema: {
       type: 'object',
       properties: {
@@ -107,6 +151,12 @@ export const TOOLS: MCPToolDefinition[] = [
   {
     name: 'notion_get_block_children',
     description: 'Get child blocks of a page or block. This is how you read page content. Returns a paginated list of blocks.',
+    annotations: {
+      title: 'Get Block Children',
+      readOnlyHint: true,
+      destructiveHint: false,
+      openWorldHint: true,
+    },
     inputSchema: {
       type: 'object',
       properties: {
@@ -120,6 +170,12 @@ export const TOOLS: MCPToolDefinition[] = [
   {
     name: 'notion_append_blocks',
     description: 'Append content blocks to a page or block. Max 100 blocks, 2 levels of nesting. Common types: paragraph, heading_1/2/3, bulleted_list_item, numbered_list_item, to_do, code, quote, callout, divider, table.',
+    annotations: {
+      title: 'Append Block Children',
+      readOnlyHint: false,
+      destructiveHint: false,
+      openWorldHint: false,
+    },
     inputSchema: {
       type: 'object',
       properties: {
@@ -132,6 +188,13 @@ export const TOOLS: MCPToolDefinition[] = [
   {
     name: 'notion_update_block',
     description: 'Update a block\'s content. Send the block type key with updated data, e.g. { "paragraph": { "rich_text": [...] } }.',
+    annotations: {
+      title: 'Update Block',
+      readOnlyHint: false,
+      destructiveHint: false,
+      idempotentHint: true,
+      openWorldHint: false,
+    },
     inputSchema: {
       type: 'object',
       properties: {
@@ -144,6 +207,12 @@ export const TOOLS: MCPToolDefinition[] = [
   {
     name: 'notion_delete_block',
     description: 'Delete (archive) a block. The block is moved to trash.',
+    annotations: {
+      title: 'Delete Block',
+      readOnlyHint: false,
+      destructiveHint: true,
+      openWorldHint: false,
+    },
     inputSchema: {
       type: 'object',
       properties: {
@@ -157,6 +226,12 @@ export const TOOLS: MCPToolDefinition[] = [
   {
     name: 'notion_create_data_source',
     description: 'Create a new data source (table) under an existing database. Data sources are individual tables within a database (API 2025-09-03).',
+    annotations: {
+      title: 'Create Data Source',
+      readOnlyHint: false,
+      destructiveHint: false,
+      openWorldHint: false,
+    },
     inputSchema: {
       type: 'object',
       properties: {
@@ -170,6 +245,12 @@ export const TOOLS: MCPToolDefinition[] = [
   {
     name: 'notion_get_data_source',
     description: 'Retrieve a data source by ID. Returns title, property schema, and timestamps.',
+    annotations: {
+      title: 'Get Data Source',
+      readOnlyHint: true,
+      destructiveHint: false,
+      openWorldHint: true,
+    },
     inputSchema: {
       type: 'object',
       properties: {
@@ -181,6 +262,13 @@ export const TOOLS: MCPToolDefinition[] = [
   {
     name: 'notion_update_data_source',
     description: 'Update a data source title or property schema.',
+    annotations: {
+      title: 'Update Data Source',
+      readOnlyHint: false,
+      destructiveHint: false,
+      idempotentHint: true,
+      openWorldHint: false,
+    },
     inputSchema: {
       type: 'object',
       properties: {
@@ -194,6 +282,12 @@ export const TOOLS: MCPToolDefinition[] = [
   {
     name: 'notion_query_data_source',
     description: 'Query pages in a data source with filters and sorts. For new API (2025-09-03). For legacy databases use notion_query_database.',
+    annotations: {
+      title: 'Query Data Source',
+      readOnlyHint: true,
+      destructiveHint: false,
+      openWorldHint: true,
+    },
     inputSchema: {
       type: 'object',
       properties: {
@@ -209,6 +303,12 @@ export const TOOLS: MCPToolDefinition[] = [
   {
     name: 'notion_list_data_source_templates',
     description: 'List page templates available in a data source.',
+    annotations: {
+      title: 'List Data Source Templates',
+      readOnlyHint: true,
+      destructiveHint: false,
+      openWorldHint: true,
+    },
     inputSchema: {
       type: 'object',
       properties: {
@@ -224,6 +324,12 @@ export const TOOLS: MCPToolDefinition[] = [
   {
     name: 'notion_get_database',
     description: 'Get a database by ID (legacy endpoint). Returns schema with properties and title. For new integrations prefer data source endpoints.',
+    annotations: {
+      title: 'Get Database',
+      readOnlyHint: true,
+      destructiveHint: false,
+      openWorldHint: true,
+    },
     inputSchema: {
       type: 'object',
       properties: {
@@ -235,6 +341,12 @@ export const TOOLS: MCPToolDefinition[] = [
   {
     name: 'notion_query_database',
     description: 'Query a database with filters and sorts (legacy endpoint). For new integrations prefer notion_query_data_source.',
+    annotations: {
+      title: 'Query Database',
+      readOnlyHint: true,
+      destructiveHint: false,
+      openWorldHint: true,
+    },
     inputSchema: {
       type: 'object',
       properties: {
@@ -250,6 +362,12 @@ export const TOOLS: MCPToolDefinition[] = [
   {
     name: 'notion_create_database',
     description: 'Create a new inline database inside a page (legacy). Must include at least one title property in the schema.',
+    annotations: {
+      title: 'Create Database',
+      readOnlyHint: false,
+      destructiveHint: false,
+      openWorldHint: false,
+    },
     inputSchema: {
       type: 'object',
       properties: {
@@ -265,6 +383,12 @@ export const TOOLS: MCPToolDefinition[] = [
   {
     name: 'notion_create_comment',
     description: 'Create a comment on a page or reply in a discussion thread. Integration must have comment capabilities enabled.',
+    annotations: {
+      title: 'Create Comment',
+      readOnlyHint: false,
+      destructiveHint: false,
+      openWorldHint: false,
+    },
     inputSchema: {
       type: 'object',
       properties: {
@@ -278,6 +402,12 @@ export const TOOLS: MCPToolDefinition[] = [
   {
     name: 'notion_get_comments',
     description: 'List unresolved comments on a page or block.',
+    annotations: {
+      title: 'List Comments',
+      readOnlyHint: true,
+      destructiveHint: false,
+      openWorldHint: true,
+    },
     inputSchema: {
       type: 'object',
       properties: {
@@ -291,6 +421,12 @@ export const TOOLS: MCPToolDefinition[] = [
   {
     name: 'notion_get_comment',
     description: 'Retrieve a single comment by ID.',
+    annotations: {
+      title: 'Get Comment',
+      readOnlyHint: true,
+      destructiveHint: false,
+      openWorldHint: true,
+    },
     inputSchema: {
       type: 'object',
       properties: {
@@ -304,6 +440,12 @@ export const TOOLS: MCPToolDefinition[] = [
   {
     name: 'notion_list_users',
     description: 'List all users in the workspace. Returns names, types (person/bot), and avatars.',
+    annotations: {
+      title: 'List Users',
+      readOnlyHint: true,
+      destructiveHint: false,
+      openWorldHint: true,
+    },
     inputSchema: {
       type: 'object',
       properties: {
@@ -315,6 +457,12 @@ export const TOOLS: MCPToolDefinition[] = [
   {
     name: 'notion_get_user',
     description: 'Get a user by ID.',
+    annotations: {
+      title: 'Get User',
+      readOnlyHint: true,
+      destructiveHint: false,
+      openWorldHint: true,
+    },
     inputSchema: {
       type: 'object',
       properties: {
@@ -326,6 +474,12 @@ export const TOOLS: MCPToolDefinition[] = [
   {
     name: 'notion_get_bot_user',
     description: 'Get the bot user info for this integration. Useful for checking identity and permissions.',
+    annotations: {
+      title: 'Get Bot Info',
+      readOnlyHint: true,
+      destructiveHint: false,
+      openWorldHint: true,
+    },
     inputSchema: {
       type: 'object',
       properties: {},

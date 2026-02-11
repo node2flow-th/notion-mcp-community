@@ -98,16 +98,26 @@ export function handleToolCall(
 export function createServer(config?: NotionMcpConfig) {
   const server = new McpServer({
     name: 'notion-mcp',
-    version: '1.0.0',
+    version: '1.0.1',
+  }, {
+    capabilities: {
+      tools: {},
+      prompts: {},
+      resources: {},
+    },
   });
 
   let client: NotionClient | null = null;
 
+  // ========== Register Tools ==========
   for (const tool of TOOLS) {
-    server.tool(
+    (server as any).registerTool(
       tool.name,
-      tool.description,
-      tool.inputSchema as Record<string, unknown>,
+      {
+        description: tool.description,
+        inputSchema: tool.inputSchema,
+        annotations: tool.annotations,
+      },
       async (args: Record<string, unknown>) => {
         const apiKey =
           config?.apiKey ||
@@ -139,6 +149,90 @@ export function createServer(config?: NotionMcpConfig) {
       }
     );
   }
+
+  // ========== Register Prompts ==========
+  server.prompt(
+    'manage-pages',
+    'Guide for managing Notion pages — search, create, update, and organize content',
+    () => ({
+      messages: [{
+        role: 'user' as const,
+        content: {
+          type: 'text' as const,
+          text: [
+            'You are a Notion workspace assistant. Help me manage my Notion pages and content.',
+            '',
+            'Available actions:',
+            '1. **Search** — Use notion_search to find pages and databases',
+            '2. **Get page** — Use notion_get_page to read page properties',
+            '3. **Create page** — Use notion_create_page with parent and properties',
+            '4. **Update page** — Use notion_update_page to modify properties',
+            '5. **Blocks** — Use notion_get_block_children, notion_append_block_children to manage content',
+            '6. **Comments** — Use notion_create_comment, notion_list_comments for discussions',
+            '',
+            'Start by searching for my recent pages.',
+          ].join('\n'),
+        },
+      }],
+    })
+  );
+
+  server.prompt(
+    'query-databases',
+    'Guide for querying and managing Notion databases and data sources',
+    () => ({
+      messages: [{
+        role: 'user' as const,
+        content: {
+          type: 'text' as const,
+          text: [
+            'You are a Notion database assistant. Help me query and manage my databases.',
+            '',
+            'Available actions:',
+            '1. **Search databases** — Use notion_search with filter for databases',
+            '2. **Query database** — Use notion_query_database with filters and sorts',
+            '3. **Create database** — Use notion_create_database with schema',
+            '4. **Data sources** — Use notion_query_data_source for the new data source API',
+            '5. **Templates** — Use notion_list_data_source_templates for available templates',
+            '6. **Users** — Use notion_list_users to see workspace members',
+            '',
+            'Start by searching for my databases.',
+          ].join('\n'),
+        },
+      }],
+    })
+  );
+
+  // ========== Register Resources ==========
+  server.resource(
+    'Notion Server Info',
+    'notion://server-info',
+    {
+      description: 'Connection status and available tools for this Notion MCP server',
+      mimeType: 'application/json',
+    },
+    async () => ({
+      contents: [{
+        uri: 'notion://server-info',
+        mimeType: 'application/json',
+        text: JSON.stringify({
+          name: 'notion-mcp',
+          version: '1.0.1',
+          connected: !!config,
+          tools_available: TOOLS.length,
+          tool_categories: {
+            search: 1,
+            pages: 5,
+            blocks: 5,
+            data_sources: 5,
+            databases: 3,
+            comments: 3,
+            users: 3,
+          },
+        }, null, 2),
+      }],
+    })
+  );
 
   return server;
 }

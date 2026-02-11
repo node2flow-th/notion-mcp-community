@@ -125,8 +125,17 @@ export interface NotionList<T> {
 
 // --- Tool Definition ---
 
+export interface MCPToolAnnotations {
+  title?: string;
+  readOnlyHint?: boolean;
+  destructiveHint?: boolean;
+  idempotentHint?: boolean;
+  openWorldHint?: boolean;
+}
+
 export interface MCPToolDefinition {
   name: string;
   description: string;
+  annotations?: MCPToolAnnotations;
   inputSchema: Record<string, unknown>;
 }

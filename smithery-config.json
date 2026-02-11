@@ -1,10 +1,20 @@
 {
   "type": "object",
+  "required": ["NOTION_API_KEY"],
   "properties": {
     "NOTION_API_KEY": {
       "type": "string",
-      "description": "Your Notion Internal Integration Token (starts with ntn_ or secret_)"
+      "description": "Notion integration token from https://www.notion.so/my-integrations"
+    },
+    "NOTION_TIMEOUT": {
+      "type": "number",
+      "default": 30000,
+      "description": "Request timeout in milliseconds (default: 30000)"
+    },
+    "NOTION_API_VERSION": {
+      "type": "string",
+      "default": "2022-06-28",
+      "description": "Notion API version header (default: 2022-06-28)"
     }
-  },
-  "required": ["NOTION_API_KEY"]
+  }
 }
