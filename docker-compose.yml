@@ -1,0 +1,9 @@
+services:
+  notion-mcp-community:
+    build: .
+    container_name: notion-mcp-community
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:3024:3000"
+    mem_limit: 512m
+    mem_reservation: 256m

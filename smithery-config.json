@@ -1,0 +1,10 @@
+{
+  "type": "object",
+  "properties": {
+    "NOTION_API_KEY": {
+      "type": "string",
+      "description": "Your Notion Internal Integration Token (starts with ntn_ or secret_)"
+    }
+  },
+  "required": ["NOTION_API_KEY"]
+}
