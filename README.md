@@ -1,5 +1,7 @@
 # @node2flow/notion-mcp
 
+[![smithery badge](https://smithery.ai/badge/node2flow/notion)](https://smithery.ai/server/node2flow/notion)
+
 MCP server for the Notion API — manage pages, blocks, databases, data sources, comments, and users.
 
 ## Quick Start
