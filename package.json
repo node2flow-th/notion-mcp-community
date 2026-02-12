@@ -1,6 +1,6 @@
 {
   "name": "@node2flow/notion-mcp",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "MCP server for Notion API — manage pages, blocks, databases, data sources, comments, and users",
   "type": "module",
   "main": "dist/index.js",
