@@ -111,4 +111,13 @@ https://notion-mcp-community.node2flow.net/mcp?NOTION_API_KEY=ntn_xxx
 
 ## License
 
-MIT
+MIT License - see [LICENSE](LICENSE)
+
+Copyright (c) 2026 [Node2Flow](https://node2flow.net)
+
+## Links
+
+- [npm Package](https://www.npmjs.com/package/@node2flow/notion-mcp)
+- [Notion API Documentation](https://developers.notion.com/)
+- [MCP Protocol](https://modelcontextprotocol.io/)
+- [Node2Flow](https://node2flow.net)
