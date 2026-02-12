@@ -99,7 +99,7 @@ export function handleToolCall(
 export function createServer(config?: NotionMcpConfig) {
   const server = new McpServer({
     name: 'notion-mcp',
-    version: '1.0.3',
+    version: '1.0.4',
   }, {
     capabilities: {
       tools: {},
@@ -218,7 +218,7 @@ export function createServer(config?: NotionMcpConfig) {
         mimeType: 'application/json',
         text: JSON.stringify({
           name: 'notion-mcp',
-          version: '1.0.3',
+          version: '1.0.4',
           connected: !!config,
           tools_available: TOOLS.length,
           tool_categories: {
