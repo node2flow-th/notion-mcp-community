@@ -1,6 +1,8 @@
 # @node2flow/notion-mcp
 
 [![smithery badge](https://smithery.ai/badge/node2flow/notion)](https://smithery.ai/server/node2flow/notion)
+[![npm version](https://img.shields.io/npm/v/@node2flow/notion-mcp.svg)](https://www.npmjs.com/package/@node2flow/notion-mcp)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 MCP server for the Notion API — manage pages, blocks, databases, data sources, comments, and users.
 
